@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ClockComponent } from './clock/clock.component';
 
 @Component({
   selector: 'app-root',
