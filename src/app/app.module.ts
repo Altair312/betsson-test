@@ -12,6 +12,7 @@ import { SearchInputComponent } from './search/components/search-input/search-in
 import { SearchListComponent } from './search/components/search-list/search-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MovieContainerComponent } from './movie/container/movie-view/movie-container.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MovieContainerComponent } from './movie/container/movie-view/movie-cont
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
