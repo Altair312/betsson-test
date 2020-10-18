@@ -7,13 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
-import {
-  debounceTime,
-  pluck,
-  distinctUntilChanged,
-  filter,
-  map,
-} from 'rxjs/operators';
+import { debounceTime, pluck, filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-input',
@@ -29,10 +23,12 @@ export class SearchInputComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     fromEvent(this.inputElement.nativeElement, 'keyup')
       .pipe(
+        debounceTime(400),
         pluck('target', 'value'),
+        filter((value: string) => value.length >= 2),
         map((value) => value)
       )
-      .subscribe((value: string) => {
+      .subscribe((value) => {
         this.search.emit(value);
       });
   }
