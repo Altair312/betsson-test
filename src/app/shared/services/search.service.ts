@@ -19,10 +19,16 @@ export class SearchService {
 
     return this.http.get(url).pipe(
       map((response: SearchResponse) => {
-        return {
-          Search: response.Search,
-          totalResults: response.totalResults,
-        };
+        if (response.Response === 'True') {
+          return {
+            Search: response.Search,
+            totalResults: response.totalResults,
+          };
+        } else if (response.Response === 'False') {
+          return {
+            Error: response.Error,
+          };
+        }
       })
     );
   }

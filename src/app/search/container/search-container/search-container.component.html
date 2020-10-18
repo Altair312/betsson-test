@@ -1,5 +1,6 @@
 <div>
   <app-search-input (search)="handleSearch($event)"></app-search-input>
-  <h2 *ngIf="!movies.length">No movies found</h2>
+  <h2 *ngIf="!movies.length && !error">No movies found</h2>
+  <h2 *ngIf="error">{{ error }}</h2>
   <app-search-list [movies]="movies"></app-search-list>
 </div>

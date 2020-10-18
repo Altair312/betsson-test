@@ -11,6 +11,7 @@ import { Movie, SearchResponse } from 'src/app/shared/models/search.interface';
 })
 export class SearchContainerComponent {
   movies: Movie[] | string = [];
+  error = '';
 
   constructor(private searchService: SearchService) {}
 
@@ -18,15 +19,20 @@ export class SearchContainerComponent {
     this.searchService
       .getMovies(inputValue)
       .subscribe((response: SearchResponse) => {
-        this.movies = response.Search.map((movie) => {
-          return {
-            Title: movie.Title,
-            imdbID: movie.imdbID,
-            Year: movie.Year,
-            Type: movie.Type,
-            Poster: movie.Poster,
-          };
-        });
+        if (response.Error) {
+          this.error = response.Error;
+          this.movies = [];
+        } else {
+          this.movies = response.Search.map((movie) => {
+            return {
+              Title: movie.Title,
+              imdbID: movie.imdbID,
+              Year: movie.Year,
+              Type: movie.Type,
+              Poster: movie.Poster,
+            };
+          });
+        }
       });
   }
 }
