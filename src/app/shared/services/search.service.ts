@@ -3,14 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Movie } from '../models/search.interface';
+import { Movie, SearchResponse } from '../models/search.interface';
 
-export interface SearchResponse {
-  Response: string;
-  Search?: Movie[];
-  totalResults?: string;
-  Error?: string;
-}
 @Injectable({
   providedIn: 'root',
 })
@@ -25,14 +19,10 @@ export class SearchService {
 
     return this.http.get(url).pipe(
       map((response: SearchResponse) => {
-        if (response.Response === 'True') {
-          return {
-            Search: response.Search,
-            totalResults: response.totalResults,
-          };
-        } else {
-          return { Search: 0 };
-        }
+        return {
+          Search: response.Search,
+          totalResults: response.totalResults,
+        };
       })
     );
   }
