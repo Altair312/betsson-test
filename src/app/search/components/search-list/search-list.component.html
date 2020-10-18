@@ -1,20 +1,20 @@
-<div class="ui four column grid">
-  <div class="column" *ngFor="let movie of movies">
-    <div class="ui card">
-      <div class="image">
+<div>
+  <div *ngFor="let movie of movies">
+    <div>
+      <div>
         <img [src]="movie.Poster" />
       </div>
-      <div class="content">
-        <a class="header" style="margin: 1em 0 1em 0">{{ movie.Title }}</a>
-        <div class="meta">
-          <span class="date" style="font-weight: bolder">
+      <div>
+        <a>{{ movie.Title }}</a>
+        <div>
+          <span>
             {{ movie.Year }}
           </span>
-          <span class="date" style="font-weight: bolder">
+          <span>
             {{ movie.imdbID }}
           </span>
         </div>
-        <div class="description">{{ movie.Type }}</div>
+        <div>{{ movie.Type }}</div>
       </div>
     </div>
   </div>

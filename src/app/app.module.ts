@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { SearchContainerComponent } from './search/container/search-container/search-container.component';
 import { SearchInputComponent } from './search/components/search-input/search-input.component';
 import { SearchListComponent } from './search/components/search-list/search-list.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SearchListComponent } from './search/components/search-list/search-list
     SearchContainerComponent,
     SearchInputComponent,
     SearchListComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
