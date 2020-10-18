@@ -1,4 +1,4 @@
-export interface SearchResponse {
+export interface Search {
   Response: string;
   Search?: Movie[];
   totalResults?: string;
@@ -11,4 +11,18 @@ export interface Movie {
   imdbID: string;
   Type: string;
   Poster: string;
+}
+
+export interface MovieView extends Movie {
+  Plot: string;
+  Runtime: string;
+  Genre: string;
+  Ratings: Rating[];
+  Response?: string;
+  Error?: string;
+}
+
+interface Rating {
+  Source: string;
+  Value: string;
 }

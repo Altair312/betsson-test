@@ -5,7 +5,7 @@
         <img [src]="movie.Poster" />
       </div>
       <div>
-        <a>{{ movie.Title }}</a>
+        <a routerLink="/movie/{{ movie.imdbID }}">{{ movie.Title }}</a>
         <div>
           <span>
             {{ movie.Year }}
