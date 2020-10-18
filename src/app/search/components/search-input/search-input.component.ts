@@ -18,12 +18,14 @@ export class SearchInputComponent implements AfterViewInit {
   @ViewChild('input') inputElement: ElementRef;
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
+  private DEBOUNCE_TIME = 600;
+
   constructor() {}
 
   ngAfterViewInit(): void {
     fromEvent(this.inputElement.nativeElement, 'keyup')
       .pipe(
-        debounceTime(400),
+        debounceTime(this.DEBOUNCE_TIME),
         pluck('target', 'value'),
         filter((value: string) => value.length >= 2),
         map((value) => value)
