@@ -6,8 +6,8 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { debounceTime, pluck, filter, map } from 'rxjs/operators';
+import { fromEvent, merge } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-input',
@@ -16,22 +16,24 @@ import { debounceTime, pluck, filter, map } from 'rxjs/operators';
 })
 export class SearchInputComponent implements AfterViewInit {
   @ViewChild('input') inputElement: ElementRef;
+  @ViewChild('button') buttonElement: ElementRef;
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  private DEBOUNCE_TIME = 600;
-
   constructor() {}
+  
+  value = '';
+  
+  onKeyUp(value: string) {
+    this.value = value;
+  }
 
+  
   ngAfterViewInit(): void {
-    fromEvent(this.inputElement.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(this.DEBOUNCE_TIME),
-        pluck('target', 'value'),
-        filter((value: string) => value.length >= 2),
-        map((value) => value)
-      )
-      .subscribe((value) => {
-        this.search.emit(value);
-      });
+    const inputSubmit = fromEvent(this.inputElement.nativeElement, "keyup").pipe(filter((e: KeyboardEvent) => e.key === "Enter"));
+    const buttonSubmit = fromEvent(this.buttonElement.nativeElement, "click");
+
+    const submit = merge(inputSubmit, buttonSubmit);
+
+    submit.subscribe(() => this.search.emit(this.value));
   }
 }
