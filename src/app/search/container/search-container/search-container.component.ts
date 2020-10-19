@@ -13,8 +13,8 @@ export class SearchContainerComponent {
 
   constructor(private searchService: SearchService) {}
 
-  handleSearch(inputValue: string): void {
-    this.searchService.getMovies(inputValue).subscribe((response: Search) => {
+  handleSearch(query: string): void {
+    this.searchService.getMovies(query).subscribe((response: Search) => {
       if (response.Error) {
         this.error = response.Error;
         this.movies = [];
