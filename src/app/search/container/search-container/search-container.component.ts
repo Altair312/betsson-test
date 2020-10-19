@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { Movie, Search } from 'src/app/shared/models/search.interface';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { getSearchResults } from 'src/app/actions/search.actions';
 
 @Component({
   selector: 'app-search-container',
@@ -9,9 +12,11 @@ import { Movie, Search } from 'src/app/shared/models/search.interface';
 })
 export class SearchContainerComponent {
   movies: Movie[] | string = [];
+  count$: Observable<number>;
   error = '';
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) {
+  }
 
   handleSearch(query: string): void {
     this.searchService.getMovies(query).subscribe((response: Search) => {
