@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { SearchService } from 'src/app/shared/services/search.service';
-import { Movie, Search } from 'src/app/shared/models/search.interface';
+import { Movie } from 'src/app/shared/models/search.interface';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { GetMovies } from 'src/app/actions/search.actions';
 
 @Component({
   selector: 'app-search-container',
@@ -9,26 +11,13 @@ import { Movie, Search } from 'src/app/shared/models/search.interface';
 })
 export class SearchContainerComponent {
   movies: Movie[] | string = [];
-  error = '';
+  movies$: Observable<Movie[]> = this.store.select(state => state.search.Movies);
+  error$: Observable<string> = this.store.select(state => state.search.Error);
 
-  constructor(private searchService: SearchService) {}
+  constructor(private store: Store<{search: any}>) {
+  }
 
-  handleSearch(inputValue: string): void {
-    this.searchService.getMovies(inputValue).subscribe((response: Search) => {
-      if (response.Error) {
-        this.error = response.Error;
-        this.movies = [];
-      } else {
-        this.movies = response.Search.map((movie) => {
-          return {
-            Title: movie.Title,
-            imdbID: movie.imdbID,
-            Year: movie.Year,
-            Type: movie.Type,
-            Poster: movie.Poster,
-          };
-        });
-      }
-    });
+  handleSearch(query: string): void {
+    this.store.dispatch(GetMovies({payload: query}));
   }
 }

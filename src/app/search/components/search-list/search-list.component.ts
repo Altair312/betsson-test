@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Movie } from '../../../shared/models/search.interface';
 
 @Component({
@@ -9,7 +11,9 @@ import { Movie } from '../../../shared/models/search.interface';
 export class SearchListComponent implements OnInit {
   @Input() movies: Movie[];
 
-  constructor() {}
+  movies$: Observable<Movie[]> = this.store.select(state => state.movies);
+
+  constructor(private store: Store<{movies: Movie[]}>) {}
 
   ngOnInit(): void {}
 }

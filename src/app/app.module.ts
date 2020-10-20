@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
 
 import { AppComponent } from './app.component';
 import { SearchContainerComponent } from './search/container/search-container/search-container.component';
@@ -12,7 +11,11 @@ import { SearchInputComponent } from './search/components/search-input/search-in
 import { SearchListComponent } from './search/components/search-list/search-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MovieContainerComponent } from './movie/container/movie-view/movie-container.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { searchReducer } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { MovieEffects } from './effects/search.effects';
 
 @NgModule({
   declarations: [
@@ -27,11 +30,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    StoreModule.forRoot(reducers, {
-      metaReducers,
+    StoreModule.forRoot({ search: searchReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
     }),
-    BrowserAnimationsModule,
+    EffectsModule.forRoot([MovieEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
