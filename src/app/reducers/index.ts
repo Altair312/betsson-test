@@ -5,7 +5,7 @@ import {
 } from '../actions/search.actions';
 
 export const initialState = {
-  Movies: {},
+  Movies: [],
   totalResults: 0,
   currentMovie: {},
 };
