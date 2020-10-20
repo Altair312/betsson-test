@@ -14,6 +14,8 @@ import { MovieContainerComponent } from './movie/container/movie-view/movie-cont
 import { searchReducer } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { MovieEffects } from './effects/search.effects';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,9 @@ import { environment } from '../environments/environment';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({movies: searchReducer}),
+    StoreModule.forRoot({search: searchReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([MovieEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
