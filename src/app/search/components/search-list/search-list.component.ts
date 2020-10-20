@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Movie } from '../../../shared/models/search.interface';
+import { Movie } from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-search-list',

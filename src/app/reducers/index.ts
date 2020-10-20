@@ -3,13 +3,22 @@ import {
   GetMoviesSuccess,
   GetSingleMovieSuccess,
 } from '../actions/search.actions';
+import { SearchState } from '../shared/interfaces';
 
-export const initialState = {
+export const initialState: SearchState = {
   Movies: [],
   totalResults: 0,
-  currentMovie: {},
+  currentMovie: {
+    Title: '',
+    Year: 0,
+    imdbID: '',
+    Type: '',
+    Poster: '',
+  },
+  Error: undefined,
 };
 
+// tslint:disable-next-line: variable-name
 const _searchReducer = createReducer(
   initialState,
   on(GetMoviesSuccess, (state, action) => ({ ...state, ...action.payload })),

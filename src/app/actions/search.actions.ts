@@ -1,5 +1,5 @@
-import { Action, createAction, props } from '@ngrx/store';
-import { Movie, MovieView } from '../shared/models/search.interface';
+import { createAction, props } from '@ngrx/store';
+import { Movie } from '../shared/interfaces';
 
 export const enum MovieActionTypes {
   GET_MOVIES = '[Movie] Get Movie List',
@@ -25,5 +25,5 @@ export const GetSingleMovie = createAction(
 
 export const GetSingleMovieSuccess = createAction(
   MovieActionTypes.GET_SINGLE_MOVIE_SUCCESS,
-  props<{ payload: MovieView }>()
+  props<{ payload: Movie }>()
 );

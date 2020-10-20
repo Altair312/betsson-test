@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from 'src/app/shared/models/search.interface';
+import { Movie } from 'src/app/shared/interfaces';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GetMovies } from 'src/app/actions/search.actions';
+import { SearchState } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-search-container',
@@ -16,7 +17,7 @@ export class SearchContainerComponent implements OnInit {
   error$: Observable<string> = this.store.select((state) => state.search.Error);
   searchParams = new URLSearchParams(window.location.search).get('search');
 
-  constructor(private store: Store<{ search: any }>) {}
+  constructor(private store: Store<{ search: SearchState }>) {}
 
   handleSearch(query: string): void {
     window.history.replaceState(

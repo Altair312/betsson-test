@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { SearchRequest, MovieRequest } from '../models/search.interface';
+import { SearchRequest, Movie } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -23,10 +23,12 @@ export class SearchService {
           return {
             Movies: response.Search,
             totalResults: response.totalResults,
+            Error: undefined,
           };
         } else if (response.Response === 'False') {
           return {
             Error: response.Error,
+            Movies: undefined,
           };
         }
       })
@@ -36,7 +38,7 @@ export class SearchService {
     const url = `${this.API_URL}?apikey=${this.API_TOKEN}&i=${query}`;
 
     return this.http.get(url).pipe(
-      map((response: MovieRequest) => {
+      map((response: Movie) => {
         if (response.Response === 'False') {
           return { Error: response.Error };
         } else {

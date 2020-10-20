@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map, mergeMap, switchMap } from 'rxjs/operators';
+import { exhaustMap, map } from 'rxjs/operators';
 import {
   MovieActionTypes,
   GetMovies,
@@ -32,14 +32,12 @@ export class MovieEffects {
     this.actions$.pipe(
       ofType(GetSingleMovie),
       exhaustMap((action) =>
-        this.searchService
-          .getSingleMovie(action.payload)
-          .pipe(
-            map((movie) => ({
-              type: MovieActionTypes.GET_SINGLE_MOVIE_SUCCESS,
-              payload: movie,
-            }))
-          )
+        this.searchService.getSingleMovie(action.payload).pipe(
+          map((movie) => ({
+            type: MovieActionTypes.GET_SINGLE_MOVIE_SUCCESS,
+            payload: movie,
+          }))
+        )
       )
     )
   );

@@ -1,5 +1,5 @@
 export interface ServiceResponse {
-  Response: string;
+  Response?: string;
   Error?: string;
 }
 
@@ -8,22 +8,26 @@ export interface SearchRequest extends ServiceResponse {
   totalResults?: string;
 }
 
-export interface Movie {
+export interface Movie extends ServiceResponse {
   Title: string;
   Year: number;
   imdbID: string;
   Type: string;
   Poster: string;
-}
-
-export interface MovieRequest extends ServiceResponse, Movie {
-  Plot: string;
-  Runtime: string;
-  Genre: string;
-  Ratings: Rating[];
+  Plot?: string;
+  Runtime?: string;
+  Genre?: string;
+  Ratings?: Rating[];
 }
 
 interface Rating {
   Source: string;
   Value: string;
+}
+
+export interface SearchState {
+  Movies: Movie[];
+  totalResults: number;
+  currentMovie: Movie;
+  Error: string;
 }
