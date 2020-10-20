@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { getSearchResults } from '../actions/search.actions';
+import {  GetMoviesSuccess} from '../actions/search.actions';
 
 
 export const initialState = [];
 
 const _searchReducer = createReducer(
   initialState,
-  on(getSearchResults, (state) => state)
+  on(GetMoviesSuccess, (_state, action) => ({...action.payload}))
 );
 
 export const searchReducer = (state, action) => {
