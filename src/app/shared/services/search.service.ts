@@ -21,7 +21,7 @@ export class SearchService {
       map((response: Search) => {
         if (response.Response === 'True') {
           return {
-            Search: response.Search,
+            Movies: response.Search,
             totalResults: response.totalResults,
           };
         } else if (response.Response === 'False') {
@@ -32,7 +32,7 @@ export class SearchService {
       })
     );
   }
-  getSingleMovie(query: string): any {
+  getSingleMovie(query: string): Observable<any> {
     const url = `${this.API_URL}?apikey=${this.API_TOKEN}&i=${query}`;
 
     return this.http.get(url).pipe(
