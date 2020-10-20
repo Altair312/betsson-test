@@ -1,9 +1,9 @@
 export interface ServiceResponse {
-  Response?: string;
+  Response: string;
   Error?: string;
 }
 
-export interface SearchResponse extends ServiceResponse {
+export interface SearchRequest extends ServiceResponse {
   Search?: Movie[];
   totalResults?: string;
 }
@@ -16,7 +16,7 @@ export interface Movie {
   Poster: string;
 }
 
-export interface MovieView extends ServiceResponse, Movie {
+export interface MovieRequest extends ServiceResponse, Movie {
   Plot: string;
   Runtime: string;
   Genre: string;
