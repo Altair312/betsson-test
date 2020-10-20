@@ -1,6 +1,6 @@
 <div>
   <h2>OMDb Search for movies</h2>
   <app-search-input (search)="handleSearch($event)"></app-search-input>
-  <h2 *ngIf="!movies$.length">{{ error$ | async }}</h2>
+  <h2 *ngIf="error$">{{ error$ | async }}</h2>
   <app-search-list [movies]="movies$ | async"></app-search-list>
 </div>
