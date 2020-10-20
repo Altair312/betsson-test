@@ -16,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { MovieEffects } from './effects/search.effects';
+import { MovieCardComponent } from './movie/component/movie-card/movie-card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MovieEffects } from './effects/search.effects';
     SearchListComponent,
     NotFoundComponent,
     MovieContainerComponent,
+    MovieCardComponent,
   ],
   imports: [
     BrowserModule,
