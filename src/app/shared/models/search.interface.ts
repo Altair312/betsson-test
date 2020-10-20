@@ -1,8 +1,11 @@
-export interface Search {
-  Response: string;
+export interface ServiceResponse {
+  Response?: string;
+  Error?: string;
+}
+
+export interface SearchResponse extends ServiceResponse {
   Search?: Movie[];
   totalResults?: string;
-  Error?: string;
 }
 
 export interface Movie {
@@ -13,13 +16,11 @@ export interface Movie {
   Poster: string;
 }
 
-export interface MovieView extends Movie {
+export interface MovieView extends ServiceResponse, Movie {
   Plot: string;
   Runtime: string;
   Genre: string;
   Ratings: Rating[];
-  Response?: string;
-  Error?: string;
 }
 
 interface Rating {
