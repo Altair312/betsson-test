@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SearchService } from 'src/app/shared/services/search.service';
 import { MovieView } from 'src/app/shared/models/search.interface';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { GetSingleMovie } from 'src/app/actions/search.actions';
 
 @Component({
   selector: 'app-movie-container',
@@ -11,15 +13,15 @@ import { MovieView } from 'src/app/shared/models/search.interface';
 export class MovieContainerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private searchService: SearchService
+    private store: Store<{ search }>
   ) {}
   id = '';
-  movie: MovieView;
+  movie$: Observable<MovieView> = this.store.select(
+    (state) => state.search.currentMovie
+  );
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.searchService.getSingleMovie(this.id).subscribe((response: any) => {
-      this.movie = response.Movie;
-    });
+    this.store.dispatch(GetSingleMovie({ payload: this.id }));
   }
 }

@@ -1,25 +1,5 @@
 <div class="container">
   <div class="movie-card">
-    <div class="movie-introduction" *ngIf="movie">
-      <img
-        class="movie-picture"
-        [src]="movie.Poster"
-        alt="{{ movie.Title }} Poster"
-      />
-      <div class="movie-header">
-        <h1 class="movie-title">{{ movie.Title }}</h1>
-        <div class="movie-info">
-          <h4><strong>Genre</strong>: {{ movie.Genre }}</h4>
-          <h4 class="movie-rating">
-            <strong>IMDb Rating</strong>: {{ movie.Ratings[0].Value }}
-          </h4>
-        </div>
-      </div>
-      <div class="movie-description">
-        <p>
-          <em>{{ movie.Plot }}</em>
-        </p>
-      </div>
-    </div>
+    <app-movie-card [movie]="movie$ | async"></app-movie-card>
   </div>
 </div>
