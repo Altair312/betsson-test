@@ -14,6 +14,7 @@ export class SearchContainerComponent implements OnInit {
     (state) => state.search.Movies
   );
   error$: Observable<string> = this.store.select((state) => state.search.Error);
+  searchParams = new URLSearchParams(window.location.search).get('search');
 
   constructor(private store: Store<{ search: any }>) {}
 
@@ -21,17 +22,14 @@ export class SearchContainerComponent implements OnInit {
     window.history.replaceState(
       '',
       `Search in IMDB for ${query}`,
-      `${window.location.href}?search=${query}`
+      `?search=${query}`
     );
     this.store.dispatch(GetMovies({ payload: query }));
   }
 
   ngOnInit(): void {
-    const searchParams = new URLSearchParams(window.location.search).get(
-      'search'
-    );
-    if (searchParams) {
-      this.store.dispatch(GetMovies({ payload: searchParams }));
+    if (this.searchParams) {
+      this.store.dispatch(GetMovies({ payload: this.searchParams }));
     }
   }
 }
