@@ -17,6 +17,7 @@ export class MovieContainerComponent implements OnInit {
     private store: Store<{ search: SearchState }>
   ) {}
   id = '';
+  loading$: Observable<boolean> = this.store.select((state) => state.search.loading);
   movie$: Observable<Movie> = this.store.select(
     (state) => state.search.currentMovie
   );
@@ -24,5 +25,5 @@ export class MovieContainerComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.store.dispatch(GetSingleMovie({ payload: this.id }));
-  }
+}
 }

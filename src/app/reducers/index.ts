@@ -1,6 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  GetMovies,
   GetMoviesSuccess,
+  GetSingleMovie,
   GetSingleMovieSuccess,
 } from '../actions/search.actions';
 import { SearchState } from '../shared/interfaces';
@@ -8,23 +10,20 @@ import { SearchState } from '../shared/interfaces';
 export const initialState: SearchState = {
   movies: [],
   totalResults: 0,
-  currentMovie: {
-    Title: '',
-    Year: 0,
-    imdbID: '',
-    Type: '',
-    Poster: '',
-  },
   error: undefined,
+  loading: false,
 };
 
 // tslint:disable-next-line: variable-name
 const _searchReducer = createReducer(
   initialState,
-  on(GetMoviesSuccess, (state, action) => ({ ...state, ...action.payload })),
+  on(GetMovies, state => ({...state, loading: true})),
+  on(GetSingleMovie, state => ({...state, loading: true})),
+  on(GetMoviesSuccess, (state, action) => ({ ...state, loading: false,...action.payload })),
   on(GetSingleMovieSuccess, (state, action) => ({
     ...state,
     ...action.payload,
+    loading: false,
   }))
 );
 

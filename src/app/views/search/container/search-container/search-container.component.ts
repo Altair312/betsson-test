@@ -17,6 +17,7 @@ export class SearchContainerComponent implements OnInit {
   );
   totalResults$: Observable<number> = this.store.select((state) => state.search.totalResults);
   error$: Observable<string> = this.store.select((state) => state.search.error);
+  loading$: Observable<boolean> = this.store.select((state) => state.search.loading);
   query = "";
 
   constructor(private store: Store<{ search: SearchState }>, private route : ActivatedRoute, private router : Router) {}

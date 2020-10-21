@@ -1,4 +1,5 @@
 <app-back-button></app-back-button>
 <div class="movie-container">
-  <app-movie-card [movie]="movie$ | async"></app-movie-card>
+  <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+  <app-movie-card *ngIf="movie$" [movie]="movie$ | async"></app-movie-card>
 </div>

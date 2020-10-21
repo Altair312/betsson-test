@@ -21,7 +21,7 @@ import { environment } from '../environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { BackButtonComponent } from './shared/components/back-button/back-button.component';
-
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +46,7 @@ import { BackButtonComponent } from './shared/components/back-button/back-button
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
