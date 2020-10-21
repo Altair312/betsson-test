@@ -6,6 +6,7 @@ import { MovieContainerComponent } from './movie/container/movie-view/movie-cont
 
 const routes: Routes = [
   { path: '', component: SearchContainerComponent },
+  { path: 'search/:query', component: SearchContainerComponent },
   { path: 'movie/:id', component: MovieContainerComponent },
   { path: '**', component: NotFoundComponent },
 ];

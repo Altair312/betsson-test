@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GetMovies } from 'src/app/actions/search.actions';
 import { SearchState } from 'src/app/shared/interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-container',
@@ -15,22 +16,19 @@ export class SearchContainerComponent implements OnInit {
     (state) => state.search.Movies
   );
   error$: Observable<string> = this.store.select((state) => state.search.Error);
-  searchParams = new URLSearchParams(window.location.search).get('search');
+  query = "";
 
-  constructor(private store: Store<{ search: SearchState }>) {}
+  constructor(private store: Store<{ search: SearchState }>, private route : ActivatedRoute, private router : Router) {}
 
   handleSearch(query: string): void {
-    window.history.replaceState(
-      '',
-      `Search in IMDB for ${query}`,
-      `?search=${query}`
-    );
-    this.store.dispatch(GetMovies({ payload: query }));
+    this.router.navigate([`search/${query}`])
+    this.store.dispatch(GetMovies({payload: query}));
   }
 
   ngOnInit(): void {
-    if (this.searchParams) {
-      this.store.dispatch(GetMovies({ payload: this.searchParams }));
+    this.query = this.route.snapshot.paramMap.get('query');
+    if (this.query) {
+      this.store.dispatch(GetMovies({ payload: this.query }));
     }
   }
 }

@@ -1,6 +1,5 @@
-<div>
-  <h2>OMDb Search for movies</h2>
+<div class="search-container">
   <app-search-input (search)="handleSearch($event)"></app-search-input>
-  <h2 *ngIf="error$">{{ error$ | async }}</h2>
+  <h2 class="search-error" *ngIf="error$">{{ error$ | async }}</h2>
   <app-search-list [movies]="movies$ | async"></app-search-list>
 </div>
