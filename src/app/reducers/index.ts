@@ -6,7 +6,7 @@ import {
 import { SearchState } from '../shared/interfaces';
 
 export const initialState: SearchState = {
-  Movies: [],
+  movies: [],
   totalResults: 0,
   currentMovie: {
     Title: '',
@@ -15,7 +15,7 @@ export const initialState: SearchState = {
     Type: '',
     Poster: '',
   },
-  Error: undefined,
+  error: undefined,
 };
 
 // tslint:disable-next-line: variable-name

@@ -13,9 +13,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SearchContainerComponent implements OnInit {
   movies$: Observable<Movie[]> = this.store.select(
-    (state) => state.search.Movies
+    (state) => state.search.movies
   );
-  error$: Observable<string> = this.store.select((state) => state.search.Error);
+  totalResults$: Observable<number> = this.store.select((state) => state.search.totalResults);
+  error$: Observable<string> = this.store.select((state) => state.search.error);
   query = "";
 
   constructor(private store: Store<{ search: SearchState }>, private route : ActivatedRoute, private router : Router) {}

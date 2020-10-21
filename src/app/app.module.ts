@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { searchReducer } from './reducers';
+import { MovieEffects } from './effects/search.effects';
 
 import { SearchContainerComponent } from './search/container/search-container/search-container.component';
 import { SearchInputComponent } from './search/components/search-input/search-input.component';
@@ -16,7 +17,6 @@ import { SearchListComponent } from './search/components/search-list/search-list
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MovieContainerComponent } from './movie/container/movie-view/movie-container.component';
 import { environment } from '../environments/environment';
-import { MovieEffects } from './effects/search.effects';
 import { MovieCardComponent } from './movie/component/movie-card/movie-card.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
