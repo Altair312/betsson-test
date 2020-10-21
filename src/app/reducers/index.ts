@@ -18,7 +18,7 @@ export const initialState: SearchState = {
 const _searchReducer = createReducer(
   initialState,
   on(GetMovies, state => ({...state, loading: true})),
-  on(GetSingleMovie, state => ({...state, loading: true})),
+  on(GetSingleMovie, state => ({...state, currentMovie: null, loading: true})),
   on(GetMoviesSuccess, (state, action) => ({ ...state, loading: false,...action.payload })),
   on(GetSingleMovieSuccess, (state, action) => ({
     ...state,
