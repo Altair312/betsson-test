@@ -1,0 +1,37 @@
+.movie-list
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  .movie-link
+    text-decoration: none
+    color: initial
+    flex: 45%
+    margin: 1em
+  .movie-card
+    display: flex
+    flex-direction: column
+    padding: 1.5em
+    border: 1px solid #89a1cc
+    border-radius: 15px
+    &--information
+      margin: 2em auto 0 auto
+      text-align: center
+      h1
+        font-size: 40px
+  .movie-poster
+    margin: auto
+    width: 250px
+    height: 370px
+
+@media only screen and (min-width: 600px)
+  .movie-list
+    .movie-card
+      flex-direction: row
+      &--information
+        margin: 0
+        margin-left: auto
+        text-align: right
+        h1
+          font-size: 24px
+    .movie-poster
+      margin: 0

@@ -1,12 +1,8 @@
+<div class="search-input">
   <h2 class="search-heading">OMDb Search for movies</h2>
-  <div class="">
-  <div class="">
-    <div class="">
-      <mat-form-field>
-        <mat-label>Search for a movie in IMDb</mat-label>
-        <input matInput #input (keyup)="onKeyUp(input.value)" type="text" placeholder="John Wick" />
-      </mat-form-field>
-      <button mat-raised-button color="primary" #button>Search </button>
-    </div>
-  </div>
+  <mat-form-field>
+    <mat-label>Search for a movie in IMDb</mat-label>
+    <input class="search-field" matInput #input (keyup)="onKeyUp(input.value)" type="text" placeholder="John Wick" />
+  </mat-form-field>
+  <button class="search-submit" mat-raised-button color="primary" #button>Search </button>
 </div>

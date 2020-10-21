@@ -1,21 +1,12 @@
-<div>
-  <div class="movie-list" *ngFor="let movie of movies">
-    <div>
-      <div>
-        <img [src]="movie.Poster" />
-      </div>
-      <div>
-        <a routerLink="/movie/{{ movie.imdbID }}">{{ movie.Title }}</a>
-        <div>
-          <span>
-            {{ movie.Year }}
-          </span>
-          <span>
-            {{ movie.imdbID }}
-          </span>
-        </div>
-        <div>{{ movie.Type }}</div>
-      </div>
+<div class="movie-list">
+  <a  *ngFor="let movie of movies" class="movie-link" routerLink="/movie/{{ movie.imdbID }}">
+  <div class="movie-card" >
+    <img class="movie-poster" [src]="movie.Poster" />
+    <div class="movie-card--information">
+      <h1>{{ movie.Title }}</h1>
+      <h3>{{ movie.Year}}</h3>
+      <h4><em>Type: {{ movie.Type.charAt(0).toUpperCase()}}{{movie.Type.slice(1)}}</em></h4>
     </div>
   </div>
+</a>
 </div>
