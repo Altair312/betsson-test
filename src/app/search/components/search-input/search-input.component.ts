@@ -16,7 +16,7 @@ import { filter } from 'rxjs/operators';
 })
 export class SearchInputComponent implements AfterViewInit {
   @ViewChild('input') inputElement: ElementRef;
-  @ViewChild('button') buttonElement: ElementRef;
+  @ViewChild('button', {read: ElementRef}) buttonElement: ElementRef;
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
