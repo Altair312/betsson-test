@@ -21,14 +21,14 @@ export class SearchService {
       map((response: SearchRequest) => {
         if (response.Response === 'True') {
           return {
-            Movies: response.Search,
-            totalResults: response.totalResults,
-            Error: undefined,
+            movies: response.Search,
+            totalResults: parseInt(response.totalResults),
+            error: undefined,
           };
         } else if (response.Response === 'False') {
           return {
-            Error: response.Error,
-            Movies: undefined,
+            error: response.Error,
+            movies: undefined,
           };
         }
       })
@@ -40,7 +40,7 @@ export class SearchService {
     return this.http.get(url).pipe(
       map((response: Movie) => {
         if (response.Response === 'False') {
-          return { Error: response.Error };
+          return { error: response.Error };
         } else {
           return { currentMovie: response };
         }

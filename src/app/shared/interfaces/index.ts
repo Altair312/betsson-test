@@ -26,8 +26,8 @@ interface Rating {
 }
 
 export interface SearchState {
-  Movies: Movie[];
+  movies: Movie[];
   totalResults: number;
   currentMovie: Movie;
-  Error: string;
+  error: string;
 }
