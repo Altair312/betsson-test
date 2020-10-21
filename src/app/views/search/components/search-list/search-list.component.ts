@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from '../../../shared/interfaces';
+import { Movie } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-search-list',
