@@ -1,0 +1,25 @@
+.movie
+  max-width: 450px
+  margin: 3em
+  padding: 1em 1em
+  border: 1px solid #89a1cc
+  border-radius: 15px
+  &-picture
+    max-width: clamp(150px, 50vw, 350px)
+    width: 100%
+    margin: 1em auto
+  &-introduction
+    display: flex
+    flex-direction: column
+  &-header
+    margin-top: 1em
+    text-align: center
+  &-title
+    font-size: clamp(20px, 2.5em, 36px)
+    margin-bottom: 0.5em
+  &-description
+    text-align: center
+  &-info
+    display: flex
+    flex-direction: column
+    justify-content: space-between
