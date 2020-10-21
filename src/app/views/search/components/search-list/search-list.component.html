@@ -1,6 +1,6 @@
 <div class="movie-list">
   <a  *ngFor="let movie of movies" class="movie-link" routerLink="/movie/{{ movie.imdbID }}">
-  <div class="movie-card" >
+  <div [@fadeIn] class="movie-card" >
     <img class="movie-poster" [src]="movie.Poster" />
     <div class="movie-card--information">
       <h1>{{ movie.Title }}</h1>

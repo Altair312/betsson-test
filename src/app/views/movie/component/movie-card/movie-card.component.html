@@ -1,5 +1,5 @@
 <div class="movie">
-<div class="movie-introduction" *ngIf="movie">
+<div class="movie-introduction" [@fadeIn] *ngIf="movie">
   <img
     class="movie-picture"
     [src]="movie.Poster"
