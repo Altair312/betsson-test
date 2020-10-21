@@ -20,6 +20,8 @@ import { environment } from '../environments/environment';
 import { MovieCardComponent } from './movie/component/movie-card/movie-card.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { BackButtonComponent } from './shared/components/back-button/back-button.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
     NotFoundComponent,
     MovieContainerComponent,
     MovieCardComponent,
+    BackButtonComponent
   ],
   imports: [
     BrowserModule,
