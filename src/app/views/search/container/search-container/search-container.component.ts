@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { GetMovies } from 'src/app/actions/search.actions';
 import { SearchState } from 'src/app/shared/interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
-import { getState } from "src/app/selectors/search.selectors";
 
 @Component({
   selector: 'app-search-container',
@@ -25,8 +24,6 @@ export class SearchContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.query = this.route.snapshot.paramMap.get('query');
-    console.log(this.query);
-    console.log(getState(this.store));
     if (this.query) {
       this.store.dispatch(GetMovies({ payload: this.query }));
     }
