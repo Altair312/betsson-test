@@ -30,6 +30,8 @@ export class SearchService {
           return {
             error: response.Error,
             movies: undefined,
+            totalResults: 0,
+            query: query,
           };
         }
       })
