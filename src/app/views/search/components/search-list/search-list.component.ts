@@ -6,7 +6,7 @@ import { Movie } from 'src/app/shared/interfaces';
   selector: 'search-list',
   templateUrl: './search-list.component.html',
   styleUrls: ['./search-list.component.sass'],
-  animations: fadeInAnimation
+  animations: fadeInAnimation,
 })
 export class SearchListComponent implements OnInit {
   @Input() movies: Movie[];
