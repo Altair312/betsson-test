@@ -30,5 +30,6 @@ export interface SearchState {
   totalResults?: number;
   currentMovie?: Movie;
   error?: string;
+  query?: string;
   loading: boolean;
 }

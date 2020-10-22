@@ -24,6 +24,7 @@ export class SearchService {
             movies: response.Search,
             totalResults: parseInt(response.totalResults),
             error: undefined,
+            query: query
           };
         } else if (response.Response === 'False') {
           return {

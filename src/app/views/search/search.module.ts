@@ -5,14 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
 import { SearchContainerComponent } from './container/search-container/search-container.component';
-import { SearchInputComponent } from './components/search-input/search-input.component';
 import { SearchListComponent } from './components/search-list/search-list.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
     SearchContainerComponent,
-    SearchInputComponent,
     SearchListComponent,
   ],
   imports: [
@@ -21,10 +20,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatButtonModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    SharedModule,
   ],
   exports: [
     SearchContainerComponent,
-    SearchInputComponent,
     SearchListComponent,
   ],
 })

@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { GetMovies } from 'src/app/actions/search.actions';
 import { SearchState } from 'src/app/shared/interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
+import { getState } from "src/app/selectors/search.selectors";
 
 @Component({
   selector: 'app-search-container',
@@ -18,18 +19,14 @@ export class SearchContainerComponent implements OnInit {
   totalResults$: Observable<number> = this.store.select((state) => state.search.totalResults);
   error$: Observable<string> = this.store.select((state) => state.search.error);
   loading$: Observable<boolean> = this.store.select((state) => state.search.loading);
-  
   query = "";
 
-  constructor(private store: Store<{ search: SearchState }>, private route : ActivatedRoute, private router : Router) {}
-
-  handleSearch(query: string): void {
-    this.router.navigate([`search/${query}`])
-    this.store.dispatch(GetMovies({payload: query}));
-  }
+  constructor(private store: Store<{ search: SearchState }>, private route : ActivatedRoute) {}
 
   ngOnInit(): void {
     this.query = this.route.snapshot.paramMap.get('query');
+    console.log(this.query);
+    console.log(getState(this.store));
     if (this.query) {
       this.store.dispatch(GetMovies({ payload: this.query }));
     }
