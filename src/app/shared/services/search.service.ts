@@ -22,16 +22,16 @@ export class SearchService {
         if (response.Response === 'True') {
           return {
             movies: response.Search,
-            totalResults: parseInt(response.totalResults),
+            totalResults: parseInt(response.totalResults, 10),
             error: undefined,
-            query: query
+            query,
           };
         } else if (response.Response === 'False') {
           return {
             error: response.Error,
             movies: undefined,
             totalResults: 0,
-            query: query,
+            query,
           };
         }
       })

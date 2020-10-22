@@ -12,29 +12,36 @@ import { getState } from 'src/app/selectors/search.selectors';
   templateUrl: './search-container.component.html',
   styleUrls: ['./search-container.component.sass'],
 })
-export class SearchContainerComponent implements OnInit, OnDestroy{
-  constructor(private store: Store<{ search: SearchState }>, private route : ActivatedRoute) {}
+export class SearchContainerComponent implements OnInit, OnDestroy {
+  constructor(
+    private store: Store<{ search: SearchState }>,
+    private route: ActivatedRoute
+  ) {}
 
   querySubscription = Subscription.EMPTY;
-  query:string;
+  query: string;
   storeQuery = getState(this.store).query;
 
-  movies$: Observable<Movie[]> = this.store.select( (state) => state.search.movies );
-  totalResults$: Observable<number> = this.store.select((state) => state.search.totalResults);
+  movies$: Observable<Movie[]> = this.store.select(
+    (state) => state.search.movies
+  );
+  totalResults$: Observable<number> = this.store.select(
+    (state) => state.search.totalResults
+  );
   error$: Observable<string> = this.store.select((state) => state.search.error);
-  loading$: Observable<boolean> = this.store.select((state) => state.search.loading);
+  loading$: Observable<boolean> = this.store.select(
+    (state) => state.search.loading
+  );
 
   ngOnInit(): void {
-    this.querySubscription= this.route.params
-    .subscribe(
-    (params) => {
+    this.querySubscription = this.route.params.subscribe((params) => {
       this.query = params.query;
       if (this.query && this.query !== this.storeQuery) {
         this.store.dispatch(GetMovies({ payload: this.query }));
       }
     });
   }
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.querySubscription.unsubscribe();
   }
 }
