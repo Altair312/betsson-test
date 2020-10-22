@@ -5,11 +5,8 @@ import {
   ElementRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { fromEvent, merge } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { GetMovies } from 'src/app/actions/search.actions';
-import { SearchState } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-search-input',
@@ -21,19 +18,17 @@ export class SearchInputComponent implements AfterViewInit {
   @ViewChild('button', {read: ElementRef}) buttonElement: ElementRef;
 
   value = '';
-  path = this.route.snapshot.paramMap.get('id');
-  constructor(private store: Store<{ search: SearchState }>, private router : Router, private route : ActivatedRoute) {}
+  path = this.route.snapshot.params.id;
+  constructor(private router : Router, private route : ActivatedRoute) {}
 
   onKeyUp(value: string) {
     this.value = value;
   }
 
   handleSearch(query: string): void {
-    if (this.path) {
-      this.router.navigate([`search/${query}`])
-    } else {
-      this.store.dispatch(GetMovies({payload: query}));
-    }
+    if (query.length)  {
+        this.router.navigate([`search/${query}`])
+      }
   }
 
   ngAfterViewInit(): void {
