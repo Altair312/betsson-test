@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import {
   MovieActionTypes,
   GetMovies,
   GetSingleMovie,
 } from '../actions/search.actions';
 import { SearchService } from '../shared/services/search.service';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class MovieEffects {
@@ -15,15 +16,23 @@ export class MovieEffects {
     private searchService: SearchService
   ) {}
 
+  private generalError = 'Error connecting to service';
+
   loadMovies$ = createEffect(() =>
     this.actions$.pipe(
       ofType(GetMovies),
-      exhaustMap((action) =>
+      mergeMap((action) =>
         this.searchService.getMovies(action.payload).pipe(
           map((movies) => ({
             type: MovieActionTypes.GET_MOVIES_SUCCESS,
             payload: movies,
-          }))
+          })),
+          catchError((error) =>
+            of({
+              type: MovieActionTypes.GET_MOVIES_FAIL,
+              payload: this.generalError,
+            })
+          )
         )
       )
     )
@@ -31,12 +40,18 @@ export class MovieEffects {
   loadSingleMovie$ = createEffect(() =>
     this.actions$.pipe(
       ofType(GetSingleMovie),
-      exhaustMap((action) =>
+      mergeMap((action) =>
         this.searchService.getSingleMovie(action.payload).pipe(
           map((movie) => ({
             type: MovieActionTypes.GET_SINGLE_MOVIE_SUCCESS,
             payload: movie,
-          }))
+          })),
+          catchError(() =>
+            of({
+              type: MovieActionTypes.GET_SINGLE_MOVIE_FAIL,
+              payload: this.generalError,
+            })
+          )
         )
       )
     )
