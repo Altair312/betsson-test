@@ -1,5 +1,5 @@
-<app-search-input></app-search-input>
-<app-back-button></app-back-button>
+<shared-search-input></shared-search-input>
+<shared-back-button></shared-back-button>
 <div class="movie-container">
   <mat-spinner *ngIf="loading$ | async"></mat-spinner>
   <app-movie-card *ngIf="movie$" [movie]="movie$ | async"></app-movie-card>

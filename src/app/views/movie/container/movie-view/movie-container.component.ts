@@ -7,7 +7,7 @@ import { GetSingleMovie } from 'src/app/actions/search.actions';
 import { SearchState } from 'src/app/shared/interfaces';
 
 @Component({
-  selector: 'app-movie-container',
+  selector: 'search-movie-container',
   templateUrl: './movie-container.component.html',
   styleUrls: ['./movie-container.component.sass'],
 })

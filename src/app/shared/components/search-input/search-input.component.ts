@@ -9,7 +9,7 @@ import { fromEvent, merge } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-search-input',
+  selector: 'shared-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.sass'],
 })

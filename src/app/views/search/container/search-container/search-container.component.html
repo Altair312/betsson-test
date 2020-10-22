@@ -1,9 +1,9 @@
 <div class="search-container">
-  <app-search-input></app-search-input>
+  <shared-search-input></shared-search-input>
   <mat-spinner *ngIf="loading$ | async"></mat-spinner>
   <h2 class="search-message" *ngIf="!loading$ && query && totalResults$">
     Search results for "{{query}}", total results: {{totalResults$ | async}}
   </h2>
   <h2 class="search-error" *ngIf="error$">{{ error$ | async }}</h2>
-  <app-search-list [movies]="movies$ | async"></app-search-list>
+  <search-list [movies]="movies$ | async"></search-list>
 </div>

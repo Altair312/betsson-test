@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { getState } from 'src/app/selectors/search.selectors';
 
 @Component({
-  selector: 'app-search-container',
+  selector: 'search-container',
   templateUrl: './search-container.component.html',
   styleUrls: ['./search-container.component.sass'],
 })
