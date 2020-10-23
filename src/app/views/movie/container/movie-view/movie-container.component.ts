@@ -17,6 +17,7 @@ export class MovieContainerComponent implements OnInit {
     private store: Store<{ search: SearchState }>
   ) {}
   id = '';
+  error$: Observable<string> = this.store.select((state) => state.search.error);
   loading$: Observable<boolean> = this.store.select((state) => state.search.loading);
   movie$: Observable<Movie> = this.store.select(
     (state) => state.search.currentMovie
