@@ -15,7 +15,9 @@ export class MovieCardComponent implements OnInit {
   constructor() {}
 
   getRatings(ratings: Rating[]) {
-    return ratings.filter(element => element.Source === this.ImdbName)[0].Value;
+    if (ratings.length) {
+      return ratings.filter(element => element.Source === this.ImdbName)[0].Value || "N/A";
+    }
   }
 
   ngOnInit(): void {}
