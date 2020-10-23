@@ -20,7 +20,7 @@ export interface Movie extends ServiceResponse {
   Ratings?: Rating[];
 }
 
-interface Rating {
+export interface Rating {
   Source: string;
   Value: string;
 }
