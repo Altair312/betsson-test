@@ -10,7 +10,7 @@
     <div class="movie-info">
       <h4><strong>Genre</strong>: {{ movie.Genre }}</h4>
       <h4 class="movie-rating" *ngIf="movie.Ratings[0] ? true : false">
-        <strong>IMDb Rating</strong>: {{ movie.Ratings[0].Value}}
+        <strong>IMDb Rating</strong>: {{ getRatings(movie.Ratings)}}
       </h4>
       <h4><strong>Runtime</strong>: {{movie.Runtime}}</h4>
     </div>
