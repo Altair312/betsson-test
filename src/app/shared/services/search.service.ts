@@ -14,6 +14,11 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Submit a GET HTTP request to OMDb API to return results based on search
+   * @param  {string} query The query submitted to Omdb
+   * @return {object} Returns an object with total search results, array of movies, the query you've submitted and an error, if any.
+   */
   getMovies(query: string): Observable<any> {
     const url = `${this.API_URL}?apikey=${this.API_TOKEN}&s=${query}`;
 
@@ -37,6 +42,11 @@ export class SearchService {
       })
     );
   }
+    /**
+   * Submit a GET HTTP request to OMDb API to get selected movie
+   * @param  {string} query The query submitted to Omdb
+   * @return {object} Returns an object with with the movie you have selected
+   */
   getSingleMovie(query: string): Observable<any> {
     const url = `${this.API_URL}?apikey=${this.API_TOKEN}&i=${query}`;
 
