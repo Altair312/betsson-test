@@ -1,4 +1,4 @@
-import {createSelector, Store} from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { take } from 'rxjs/operators';
 import { SearchState } from '../shared/interfaces';
 

@@ -20,7 +20,7 @@ export class SearchContainerComponent implements OnInit, OnDestroy {
 
   querySubscription = Subscription.EMPTY;
   query: string;
-  // storeQuery = getState(this.store).query;
+  storeQuery = getState(this.store).query;
 
   movies$: Observable<Movie[]> = this.store.select(
     (state) => state.search.movies
@@ -36,9 +36,9 @@ export class SearchContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.querySubscription = this.route.params.subscribe((params) => {
       this.query = params.query;
-      // if (this.query && this.query !== this.storeQuery) {
+      if (this.query && this.query !== this.storeQuery) {
       this.store.dispatch(GetMovies({ payload: this.query }));
-      // }
+      }
     });
   }
   ngOnDestroy(): void {

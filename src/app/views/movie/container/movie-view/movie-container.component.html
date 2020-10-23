@@ -3,5 +3,5 @@
 <div class="movie-container">
   <mat-spinner *ngIf="loading$ | async"></mat-spinner>
   <h2 class="search-error" *ngIf="error$">{{ error$ | async }}</h2>
-  <app-movie-card *ngIf="movie$" [movie]="movie$ | async"></app-movie-card>
+  <movie-card *ngIf="movie$" [movie]="movie$ | async"></movie-card>
 </div>
