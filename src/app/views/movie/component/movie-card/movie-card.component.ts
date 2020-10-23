@@ -3,7 +3,7 @@ import { fadeInAnimation } from 'src/app/shared/components/animations/fadeIn';
 import { Movie } from 'src/app/shared/interfaces';
 
 @Component({
-  selector: 'app-movie-card',
+  selector: 'movie-card',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.sass'],
   animations: fadeInAnimation

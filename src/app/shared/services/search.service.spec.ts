@@ -55,5 +55,4 @@ describe('SearchService', () => {
     const req = httpMock.expectOne(`http://www.omdbapi.com/?apikey=f79aeba3&i=${query}`);
     expect(req.request.method).toBe('GET');
   })
-
 });
